@@ -1,0 +1,44 @@
+services:
+  checkmate-api:
+    build:
+      context: ./checkmate
+      dockerfile: Dockerfile
+    depends_on:
+      - git-service-driver
+    volumes:
+      - ./checkmate:/app
+      - checkmate_data:/var/lib/checkmate
+    ports:
+      - 17283:17283
+  checkmate-app:
+    build:
+      context: ./checkmate-app
+      dockerfile: Dockerfile
+    depends_on:
+      - checkmate-api
+    volumes:
+      - ./checkmate-app:/app
+    ports:
+      - ${CHECKMATE_PORT}:80
+    environment:
+      - NGINX_PORT=80
+      - CHECKMATE_API_PORT=${CHECKMATE_API_PORT:-17283}
+      - CHECKMATE_API_HOST=checkmate-api
+      - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME:-localhost}
+  git-service-driver:
+    build:
+      context: ./git-service-driver
+      dockerfile: Dockerfile
+    volumes:
+      - ./git-service-driver:/app
+      - checkmate_data:/var/lib/checkmate
+    ports:
+      - 17285:17285
+volumes:
+  checkmate_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${CHECKMATE_DATA:-/var/lib/checkmate}
+  
