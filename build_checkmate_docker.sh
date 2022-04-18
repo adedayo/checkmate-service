@@ -47,6 +47,14 @@ cat > checkmate-app/src/assets/app_config.json <<- EOF
 }
 EOF
 
+# generate a default .env file
+cat > .env <<- EOF
+CHECKMATE_DATA=/var/lib/checkmate #set this to the data directory where checkmate will persist data. Make sure directory exists before starting checkmate
+CHECKMATE_PORT=80
+CHECKMATE_APP_SERVERNAME=${checkmate_host}
+CHECKMATE_API_PORT=17283
+EOF
+
 # Docker compose
 # if command -v docker-compose &> /dev/null
 # then
