@@ -35,12 +35,6 @@ services:
       - checkmate_data:/var/lib/checkmate
     ports:
       - 17285:17285
-  setup-container:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - build_location:/codes
 volumes:
   checkmate_data:
     driver: local
