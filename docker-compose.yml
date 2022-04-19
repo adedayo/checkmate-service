@@ -10,7 +10,7 @@ services:
       - ./checkmate:/app
       - checkmate_data:/var/lib/checkmate
     ports:
-      - 17283:17283s
+      - 17283:17283
   checkmate-app:
     build:
       context: ./checkmate-app
@@ -34,7 +34,7 @@ services:
       - ./git-service-driver:/app
       - checkmate_data:/var/lib/checkmate
     ports:
-      - 17285:17285s
+      - 17285:17285
   setup-container:
     build:
       context: .
