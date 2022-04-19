@@ -25,7 +25,7 @@ services:
       - NGINX_PORT=80
       - CHECKMATE_API_PORT=${CHECKMATE_API_PORT:-17283}
       - CHECKMATE_API_HOST=checkmate-api
-      - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME:-localhost}s
+      - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME:-localhost}
   git-service-driver:
     build:
       context: ./git-service-driver
