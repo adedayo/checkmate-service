@@ -4,13 +4,24 @@ services:
     build:
       context: ./checkmate
       dockerfile: Dockerfile
-    depends_on:
-      - git-service-driver
     volumes:
       - ./checkmate:/app
       - checkmate_data:/var/lib/checkmate
     ports:
       - 17283:17283
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 500M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 60s
   checkmate-app:
     build:
       context: ./checkmate-app

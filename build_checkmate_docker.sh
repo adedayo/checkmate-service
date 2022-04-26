@@ -1,37 +1,7 @@
 #!/bin/sh
 
-# download checkmate app and services
-# repos=( "checkmate" ) 
-# tag_repos=( "git-service-driver:v0.1.2" "checkmate-app:v0.2.3")
-
-# for repo in "${repos[@]}"
-# do
-#     tarball=$(curl -s "https://api.github.com/repos/adedayo/${repo}/releases/latest" | grep tarball_url | cut -d '"' -f 4)
-
-#     echo $tarball
-
-#     curl -LJ "$tarball" -o "${repo}".tar.gz
-#     mkdir -p "${repo}"
-#     tar xvfz "${repo}".tar.gz -C "${repo}" --strip-components 1
-#     rm "${repo}".tar.gz 
-# done
-
-# for repo in "${tag_repos[@]}"
-# do
-#     version=$(echo $repo | cut -d : -f2 )
-#     repo=$(echo $repo | cut -d : -f1 )
-#     tarball="https://api.github.com/repos/adedayo/${repo}/tarball/refs/tags/${version}"
-#     echo $tarball
-
-#     curl -LJ "$tarball" -o "${repo}".tar.gz
-#     mkdir -p "${repo}"
-#     tar xvfz "${repo}".tar.gz -C "${repo}" --strip-components 1
-#     rm "${repo}".tar.gz
-# done
-
 #clone repositories
 docker run -ti --rm  -v $(pwd):/git alpine/git clone https://github.com/adedayo/checkmate.git
-docker run -ti --rm  -v $(pwd):/git alpine/git clone https://github.com/adedayo/git-service-driver.git
 docker run -ti --rm  -v $(pwd):/git alpine/git clone https://github.com/adedayo/checkmate-app.git
 
 checkmate_host=$(hostname)
