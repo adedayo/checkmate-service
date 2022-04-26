@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./checkmate:/app
-      - checkmate_data:/var/lib/checkmate
+      - ${CHECKMATE_DATA}:/var/lib/checkmate
     ports:
       - 17283:17283
     deploy:
@@ -37,11 +37,4 @@ services:
       - CHECKMATE_API_PORT=${CHECKMATE_API_PORT:-17283}
       - CHECKMATE_API_HOST=checkmate-api
       - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME:-localhost}
-volumes:
-  checkmate_data:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ${CHECKMATE_DATA:-/var/lib/checkmate}
   
