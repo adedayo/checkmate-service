@@ -1,4 +1,5 @@
 version: '3'
+name: CheckMate
 services:
   checkmate-api:
     build:
@@ -13,10 +14,10 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 2G
+          memory: 16G
         reservations:
-          cpus: '0.5'
-          memory: 500M
+          cpus: '1'
+          memory: 2G
       restart_policy:
         condition: on-failure
         delay: 5s
