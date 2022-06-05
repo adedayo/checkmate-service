@@ -1,12 +1,12 @@
-version: '3'
+version: '2'
 services:
   checkmate-api:
     build:
       context: ./checkmate
       dockerfile: Dockerfile
     volumes:
-      - ./checkmate:/app
       - ${CHECKMATE_DATA}:/var/lib/checkmate
+      - ${CHECKMATE_PLUGINS}:/app/plugins
     ports:
       - 17283:17283
     deploy:
@@ -28,8 +28,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - checkmate-api
-    volumes:
-      - ./checkmate-app:/app
     ports:
       - ${CHECKMATE_PORT}:80
     environment:

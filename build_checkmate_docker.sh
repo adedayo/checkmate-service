@@ -22,6 +22,7 @@ EOF
 # generate a default .env file
 cat > .env <<- EOF
 CHECKMATE_DATA=/var/lib/checkmate
+CHECKMATE_PLUGINS=/var/lib/checkmate/plugins
 CHECKMATE_PORT=80
 CHECKMATE_APP_SERVERNAME=${checkmate_host}
 CHECKMATE_API_PORT=17283
