@@ -1,4 +1,4 @@
-version: '2.4'
+version: '2'
 services:
   checkmate-api:
     build:
@@ -12,7 +12,6 @@ services:
     mem_limit: 16gb
     memswap_limit: 32gb
     mem_reservation: 8gb
-    oom_kill_disable: true
     restart: "always"
   checkmate-app:
     build:
@@ -24,7 +23,7 @@ services:
       - ${CHECKMATE_PORT}:80
     environment:
       - NGINX_PORT=80
-      - CHECKMATE_API_PORT=${CHECKMATE_API_PORT:-17283}
+      - CHECKMATE_API_PORT=${CHECKMATE_API_PORT}
       - CHECKMATE_API_HOST=checkmate-api
-      - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME:-localhost}
+      - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME}
   
