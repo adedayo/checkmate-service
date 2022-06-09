@@ -1,0 +1,30 @@
+version: '2.4'
+services:
+  checkmate-api:
+    build:
+      context: ./checkmate
+      dockerfile: Dockerfile
+    volumes:
+      - ${CHECKMATE_DATA}:/var/lib/checkmate
+      - ${CHECKMATE_PLUGINS}:/app/plugins
+    ports:
+      - 17283:17283
+    mem_limit: 16gb
+    memswap_limit: 32gb
+    mem_reservation: 8gb
+    oom_kill_disable: true
+    restart: "always"
+  checkmate-app:
+    build:
+      context: ./checkmate-app
+      dockerfile: Dockerfile
+    depends_on:
+      - checkmate-api
+    ports:
+      - ${CHECKMATE_PORT}:80
+    environment:
+      - NGINX_PORT=80
+      - CHECKMATE_API_PORT=${CHECKMATE_API_PORT:-17283}
+      - CHECKMATE_API_HOST=checkmate-api
+      - CHECKMATE_APP_SERVERNAME=${CHECKMATE_APP_SERVERNAME:-localhost}
+  
