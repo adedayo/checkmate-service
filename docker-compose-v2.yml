@@ -9,9 +9,9 @@ services:
       - ${CHECKMATE_PLUGINS}:/app/plugins
     ports:
       - 17283:17283
-    mem_limit: 16gb
-    memswap_limit: 32gb
-    mem_reservation: 8gb
+    mem_limit: 16g
+    memswap_limit: 32g
+    mem_reservation: 8g
     restart: "always"
   checkmate-app:
     build:
